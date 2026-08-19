@@ -1,8 +1,7 @@
 import type { Metadata } from '@wular/pnext';
-import { Footer, Header } from '../chrome';
+import { Header } from '../chrome';
 import { BenchControls } from './controls';
 import { CATEGORIES, CLIENT_RUNTIMES, FIXTURES, HEADLINES, METRICS, PHASES, RUN, type FixtureId } from './data';
-import '../docs/docs.css'; // page shell: .docs, .eyebrow, .lede
 import './benchmarks.css';
 
 export const metadata: Metadata = {
@@ -24,17 +23,25 @@ export default function Benchmarks() {
             Every number below is one full run's output — no estimates, no best-of cherry-picking.
           </p>
 
-          <ul class="headline-grid">
-            {HEADLINES.map(item => (
-              <li class="headline" key={item.label}>
-                <span class="headline-value">{item.value}</span>
-                <span class="headline-note">{item.note}</span>
-                <span class="headline-label">{item.label}</span>
-              </li>
-            ))}
-          </ul>
+          <div class="leaderboard">
+            <ol class="leaderboard-list">
+              {rankedHeadlines(HEADLINES).map(item => (
+                <li class="leaderboard-row" key={item.label}>
+                  <span class="leaderboard-label">
+                    {item.label}
+                    {item.detail && <span class="leaderboard-detail"> — {item.detail}</span>}
+                  </span>
+                  <span class="leaderboard-chip blue">
+                    {item.value} {item.direction}
+                  </span>
+                </li>
+              ))}
+            </ol>
+          </div>
           <p class="headline-caption">
-            Ranges span all three fixtures. Absolute numbers per fixture are below.
+            Ranges span all three fixtures. Absolute numbers per fixture are below. pnext trails on two metrics:
+            dev warm requests on the larger fixtures, and production idle memory (~112 MB vs Next's ~86–91 MB,
+            Bun's runtime baseline).
           </p>
 
           <div id="bench" class="bench" data-category="all" data-phase="all" data-view="bars">
@@ -46,28 +53,44 @@ export default function Benchmarks() {
             </p>
 
             <div class="bench-bars-view">
+              <div class="bench-legend-keys">
+                <span><span class="legend-swatch pnext" />pnext</span>
+                <span><span class="legend-swatch" />Next.js</span>
+              </div>
               {FIXTURES.map(fixture => (
                 <section class="bench-group" key={fixture.id} aria-labelledby={`f-${fixture.id}`}>
                   <h2 id={`f-${fixture.id}`}>
                     {fixture.label}
                     <span class="group-blurb">{fixture.blurb}</span>
                   </h2>
-                  {rowsFor(fixture.id).map(({ metric, row }) => {
-                    const [pnext, pnextText, next, nextText, ratio] = row;
-                    const max = Math.max(pnext, next);
-                    return (
-                      <div class="bench-row" data-cat={metric.category} data-phase={metric.phase} key={metric.id}>
-                        <div class="row-head">
+                  <div class="bench-panel">
+                    {rowsFor(fixture.id).map(({ metric, row }) => {
+                      const [pnext, pnextText, next, nextText, ratio] = row;
+                      const max = Math.max(pnext, next);
+                      return (
+                        <div class="bench-row" data-cat={metric.category} data-phase={metric.phase} key={metric.id}>
                           <span class="row-label">{metric.label}</span>
-                          <span class={ratio >= 1 ? 'row-ratio win' : 'row-ratio loss'}>
-                            {ratio.toFixed(2)}×{ratio >= 1 ? '' : ' — Next.js ahead'}
-                          </span>
+                          <div class="row-meta">
+                            <div class="row-bars">
+                              <span class="mini-bar-track">
+                                <span class="mini-bar pnext" style={{ width: `${((pnext / max) * 100).toFixed(1)}%` }} />
+                              </span>
+                              <span class="mini-bar-track">
+                                <span class="mini-bar" style={{ width: `${((next / max) * 100).toFixed(1)}%` }} />
+                              </span>
+                            </div>
+                            <div class="row-values">
+                              <span class="row-value">{pnextText}</span>
+                              <span class="row-value">{nextText}</span>
+                            </div>
+                            <span class={ratio >= 1 ? 'row-ratio win' : 'row-ratio loss'}>
+                              {ratio.toFixed(2)}×
+                            </span>
+                          </div>
                         </div>
-                        <Bar name="pnext" width={(pnext / max) * 100} text={pnextText} lead={ratio >= 1} />
-                        <Bar name="Next.js" width={(next / max) * 100} text={nextText} lead={ratio < 1} />
-                      </div>
-                    );
-                  })}
+                      );
+                    })}
+                  </div>
                 </section>
               ))}
             </div>
@@ -130,34 +153,18 @@ export default function Benchmarks() {
           </section>
 
           <section class="bench-notes">
-            <h2>Method, honestly</h2>
+            <h2>Method</h2>
             <ul>
               <li>
                 Run of {RUN.date} on {RUN.machine}. Bun {RUN.bun}, Next.js {RUN.next}. {RUN.runs}.
               </li>
               <li>
-                Every fixture runs unmodified on both frameworks, so the two columns render the same app from the same
+                Every fixture runs unmodified on both frameworks (via <code>compat.next</code>), same app from the same
                 source.
               </li>
               <li>
-                <strong>pnext trails on two metrics.</strong> Dev warm requests degrade with module count (44.7 ms on
-                ssr, 55.3 ms on dashboard) and fall behind Next on the two larger fixtures — a known gap under
-                investigation. The production server also idles at ~112 MB against Next's ~86–91 MB, which is Bun's
-                runtime baseline, while answering warm requests 1.7–6.6× faster.
-              </li>
-              <li>
-                Dev cold start wipes the output directory and stops at the readiness banner; first page HTML is the GET
-                that follows, so it includes on-demand compilation.
-              </li>
-              <li>
-                RSS is summed across the whole process tree at one fixed point — after the ready signal and 7 warm
-                requests — never sampled at an arbitrary time. Build peak RSS comes from <code>/usr/bin/time</code>{' '}
-                wrapping the build.
-              </li>
-              <li>
-                Fixtures enable <code>compat.next</code> so one source tree runs on both frameworks. That ships pnext's
-                Next-compat navigation client, which a core pnext app does not carry — the 0 B zero-island budget is a
-                core-pnext invariant this suite does not exercise.
+                Cold starts include on-demand compilation; memory is measured across the whole process tree at a fixed
+                point, never sampled arbitrarily.
               </li>
               <li>
                 Full details, targets, and the exact commands are in <a href="/docs/performance">the performance
@@ -167,21 +174,20 @@ export default function Benchmarks() {
           </section>
         </div>
       </main>
-      <Footer />
     </>
   );
 }
 
-function Bar({ name, width, text, lead }: { name: string; width: number; text: string; lead: boolean }) {
-  return (
-    <div class="bar-line">
-      <span class="bar-name">{name}</span>
-      <span class="bar-track">
-        <span class={lead ? 'bar lead' : 'bar'} style={{ width: `${width.toFixed(1)}%` }} />
-      </span>
-      <span class="bar-value">{text}</span>
-    </div>
-  );
+function rankedHeadlines(headlines: typeof HEADLINES) {
+  const parsed = headlines.map(item => {
+    const [direction, detail] = item.note.includes(' — ') ? item.note.split(' — ') : [item.note, undefined];
+    const bounds = item.value.replace('×', '').split(/[–-]/).map(Number);
+    return { ...item, direction, detail, upper: bounds.at(-1) ?? 0 };
+  });
+  const maxSqrt = Math.sqrt(Math.max(...parsed.map(item => item.upper)));
+  return parsed
+    .map(item => ({ ...item, pct: (Math.sqrt(item.upper) / maxSqrt) * 100 }))
+    .sort((a, b) => b.upper - a.upper);
 }
 
 function rowsFor(fixture: FixtureId) {

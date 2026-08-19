@@ -18,7 +18,7 @@ export function Header() {
           <ul class="nav-links">
             {NAV_LINKS.map(link => (
               <li key={link.href}>
-                <a class="chip" href={link.href} {...(link.external ? { rel: 'noreferrer noopener' } : {})}>
+                <a class="chip" href={link.href} {...(link.external ? { target: '_blank', rel: 'noreferrer noopener' } : {})}>
                   {link.label}
                 </a>
               </li>
@@ -31,11 +31,3 @@ export function Header() {
   );
 }
 
-export function Footer() {
-  return (
-    <footer>
-      <span class="wordmark">pnext</span>
-      A fast little framework for server-first React apps, fully compatible with Next.js.
-    </footer>
-  );
-}

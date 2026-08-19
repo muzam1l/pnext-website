@@ -1,4 +1,4 @@
-import { Footer, Header } from './chrome';
+import { Header } from './chrome';
 import './docs/docs.css';
 
 export default function NotFound() {
@@ -14,7 +14,6 @@ export default function NotFound() {
           </p>
         </div>
       </main>
-      <Footer />
     </>
   );
 }

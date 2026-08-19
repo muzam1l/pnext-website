@@ -1,7 +1,7 @@
 import type { Metadata } from '@wular/pnext';
-import { Footer, Header } from '../chrome';
-import { listDocs } from './reference';
-import './docs.css';
+import { notFound } from '@wular/pnext/navigation';
+import { DocsShell } from './docs-shell';
+import { listDocs, readDoc } from './reference';
 
 export const metadata: Metadata = {
   title: 'Docs',
@@ -9,30 +9,12 @@ export const metadata: Metadata = {
 };
 
 export default async function DocsIndex() {
-  const docs = await listDocs();
+  const [docs, doc] = await Promise.all([listDocs(), readDoc('overview')]);
+  if (!doc) notFound();
+
   return (
-    <>
-      <Header />
-      <main class="docs">
-        <div class="wrap">
-          <span class="eyebrow">reference</span>
-          <h1>Docs</h1>
-          <p class="lede">
-            Everything pnext does, one page per topic. Start with the overview, then dip into whatever you need.
-          </p>
-          <ul class="doc-list">
-            {docs.map(doc => (
-              <li key={doc.slug}>
-                <a href={`/docs/${doc.slug}`}>
-                  {doc.title}
-                  <span class="slug">/docs/{doc.slug}</span>
-                </a>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </main>
-      <Footer />
-    </>
+    <DocsShell docs={docs} current="overview">
+      <article class="prose" dangerouslySetInnerHTML={{ __html: doc.html }} />
+    </DocsShell>
   );
 }

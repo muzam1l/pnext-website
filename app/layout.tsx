@@ -28,8 +28,6 @@ export const viewport: Viewport = {
   colorScheme: 'light dark',
 };
 
-// Runs before first paint so the stored theme never flashes. Light is the default.
-const THEME_SCRIPT = `(function(){try{var s=localStorage.getItem('pnext-theme');if(s)document.documentElement.setAttribute('data-theme',s)}catch(e){}})()`;
 
 export default function RootLayout({ children }: LayoutProps) {
   return (
@@ -41,7 +39,6 @@ export default function RootLayout({ children }: LayoutProps) {
           rel="stylesheet"
           href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Inter:wght@400;500;600&display=swap"
         />
-        <script dangerouslySetInnerHTML={{ __html: THEME_SCRIPT }} />
       </head>
       <body>{children}</body>
     </html>

@@ -13,6 +13,6 @@
     "preact": "^10"
   },
   "devDependencies": {
-    "@wular/pnext": "workspace:*"
+    "@wular/pnext": "^0.0.2"
   }
 }

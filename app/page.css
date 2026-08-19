@@ -31,10 +31,17 @@
   }
 }
 
+.hero {
+  border-top: none;
+}
+
 .hero .tagline {
-  font-size: clamp(1.3rem, 4vw, 2rem);
-  margin-top: 20px;
-  font-weight: 600;
+  font-size: clamp(1rem, 1.8vw, 1.25rem);
+  max-width: none;
+  margin: 0;
+  padding: 64px 24px 0;
+  font-weight: 500;
+  opacity: 0.8;
 }
 
 .circle-wrap {
@@ -51,15 +58,9 @@
   pointer-events: none;
 }
 
-.hero .sub {
-  max-width: 40ch;
-  margin: 22px auto 0;
-  font-size: 1.05rem;
-  color: var(--ink);
-}
 
 .hero .actions {
-  margin-top: 34px;
+  margin-top: 72px;
   display: flex;
   gap: 16px;
   justify-content: center;

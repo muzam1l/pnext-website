@@ -1,13 +1,23 @@
 'use client';
 
-import { useEffect, useState } from 'preact/hooks';
+import { useState } from 'preact/hooks';
+
+function storedTheme() {
+  try {
+    return localStorage.getItem('pnext-theme');
+  } catch {
+    return null;
+  }
+}
+
+// Apply the stored theme as soon as this island's chunk loads. Light is the default.
+if (typeof document !== 'undefined') {
+  const stored = storedTheme();
+  if (stored) document.documentElement.setAttribute('data-theme', stored);
+}
 
 export function ThemeToggle() {
-  const [dark, setDark] = useState(false);
-
-  useEffect(() => {
-    setDark(document.documentElement.getAttribute('data-theme') === 'dark');
-  }, []);
+  const [dark, setDark] = useState(() => storedTheme() === 'dark');
 
   const toggle = () => {
     const next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';

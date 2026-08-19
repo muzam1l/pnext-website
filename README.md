@@ -2,7 +2,7 @@
 
 The official website for [pnext](https://pnext.dev) — a fast little framework for server-first React apps, fully compatible with Next.js.
 
-It is itself a pnext app, on **core pnext** (pure Preact, no `compat.react` or `compat.next`). Every page is a Server Component and the whole site builds to static HTML. The only client island is the dark/light theme toggle.
+It is itself a pnext app, on **core pnext**. Every page is a Server Component and the whole site builds to static HTML. The only client island is the dark/light theme toggle.
 
 ## Pages
 
@@ -28,13 +28,7 @@ bun run analyze    # inspect a route's bundle
 
 ## The pnext dependency
 
-In the pnext monorepo this package depends on `"@wular/pnext": "workspace:*"` so the site always runs against the local framework checkout. Building this repo standalone resolves the published package from npm instead — pin it in `package.json`:
-
-```json
-"devDependencies": { "@wular/pnext": "^0.0.2" }
-```
-
-The docs pages read their markdown from whichever copy is resolved, so a standalone build documents the published version.
+The site depends on the published `@wular/pnext` from npm. Inside the pnext monorepo, bun's workspace resolution links the local `pnext/` checkout when its version satisfies the range, so framework changes are picked up in dev without touching this file. The docs pages read their markdown from whichever copy is resolved.
 
 ## Deploy
 
