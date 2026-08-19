@@ -1,0 +1,245 @@
+.hero {
+  padding: 90px 24px 70px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero .big {
+  font-size: clamp(2.3rem, 8.5vw, 5rem);
+  line-height: 0.95;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero .big {
+    display: inline-block;
+    animation: bounce-in 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  }
+}
+
+@keyframes bounce-in {
+  0% {
+    transform: scale(0.6) translateY(30px);
+    opacity: 0;
+  }
+  70% {
+    transform: scale(1.05) translateY(-6px);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1) translateY(0);
+  }
+}
+
+.hero .tagline {
+  font-size: clamp(1.3rem, 4vw, 2rem);
+  margin-top: 20px;
+  font-weight: 600;
+}
+
+.circle-wrap {
+  position: relative;
+  display: inline-block;
+}
+
+.circle-wrap svg {
+  position: absolute;
+  left: -10%;
+  top: -25%;
+  width: 120%;
+  height: 170%;
+  pointer-events: none;
+}
+
+.hero .sub {
+  max-width: 40ch;
+  margin: 22px auto 0;
+  font-size: 1.05rem;
+  color: var(--ink);
+}
+
+.hero .actions {
+  margin-top: 34px;
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn {
+  border: var(--border);
+  padding: 12px 22px;
+  font-weight: 600;
+  text-decoration: none;
+  box-shadow: var(--shadow);
+  font-size: 1rem;
+  display: inline-block;
+  background: var(--cream);
+}
+
+.btn.primary {
+  background: var(--blue);
+  color: var(--cream-fixed);
+}
+
+.btn.secondary {
+  background: var(--sun);
+  color: var(--ink-fixed);
+}
+
+.btn:active {
+  transform: translate(1px, 1px);
+  box-shadow: 2px 2px 0 var(--ink);
+}
+
+/* stickers */
+.stickers {
+  position: relative;
+  display: none;
+}
+
+@media (min-width: 820px) {
+  .stickers {
+    display: block;
+  }
+}
+
+.sticker {
+  position: absolute;
+  border: var(--border);
+  background: var(--sun);
+  box-shadow: var(--shadow);
+  padding: 10px 14px;
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-weight: 700;
+  font-size: 0.95rem;
+  white-space: nowrap;
+  color: var(--ink);
+}
+
+.sticker.s1 {
+  top: 20px;
+  left: 4%;
+  transform: rotate(-9deg);
+  background: var(--blue);
+  color: var(--cream-fixed);
+}
+
+.sticker.s2 {
+  top: 60px;
+  right: 3%;
+  transform: rotate(7deg);
+  background: var(--sun);
+  color: var(--ink-fixed);
+}
+
+.sticker.s3 {
+  bottom: 10px;
+  left: 12%;
+  transform: rotate(6deg);
+  background: var(--surface);
+}
+
+/* evidence grid */
+.badge-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 22px;
+}
+
+.badge {
+  border: var(--border);
+  background: var(--surface);
+  color: var(--ink);
+  box-shadow: var(--shadow);
+  padding: 22px 20px;
+  transform: rotate(var(--r, -2deg));
+}
+
+.badge:nth-child(2n) {
+  --r: 2deg;
+}
+
+.badge:nth-child(3n) {
+  --r: -1.5deg;
+}
+
+.badge:nth-child(4n) {
+  --r: 1.5deg;
+}
+
+.badge .num {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-weight: 800;
+  font-size: 2rem;
+  display: block;
+}
+
+.badge .desc {
+  font-size: 0.95rem;
+  margin-top: 6px;
+  display: block;
+}
+
+/* steps */
+.steps {
+  display: grid;
+  gap: 18px;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  margin-top: 32px;
+}
+
+.step {
+  border: var(--border);
+  background: var(--surface);
+  box-shadow: var(--shadow);
+  padding: 18px 20px;
+}
+
+.step .n {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-weight: 800;
+  font-size: 1.4rem;
+  display: block;
+  margin-bottom: 6px;
+}
+
+/* ladder */
+.ladder {
+  display: grid;
+  gap: 20px;
+}
+
+.rung {
+  border: var(--border);
+  background: var(--surface);
+  color: var(--ink);
+  box-shadow: var(--shadow);
+  padding: 22px 24px;
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.rung .tag {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-weight: 800;
+  font-size: 1.2rem;
+  background: var(--sun);
+  border: var(--border);
+  padding: 4px 10px;
+  color: var(--ink-fixed);
+}
+
+.rung p {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.arrow {
+  text-align: center;
+  font-size: 1.4rem;
+  font-weight: 800;
+  font-family: 'Bricolage Grotesque', sans-serif;
+}

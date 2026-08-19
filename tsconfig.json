@@ -1,0 +1,10 @@
+{
+  "extends": "../node_modules/@wular/pnext/config/ts/react.json",
+  "compilerOptions": {
+    "jsxImportSource": "preact",
+    "types": ["bun-types"],
+    "paths": { "#gen/*": ["./.pnext/types/*"] }
+  },
+  "include": ["**/*.ts", "**/*.tsx", ".pnext/types/**/*.ts"],
+  "exclude": ["node_modules"]
+}

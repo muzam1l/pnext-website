@@ -1,0 +1,294 @@
+.bench-page .wrap {
+  max-width: 920px;
+}
+
+/* headlines */
+.headline-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 16px;
+  list-style: none;
+  padding: 0;
+  margin: 0 0 12px;
+}
+
+.headline {
+  border: var(--border);
+  background: var(--surface);
+  box-shadow: var(--shadow);
+  padding: 16px 18px;
+}
+
+.headline-value {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-weight: 800;
+  font-size: 1.8rem;
+  display: block;
+  line-height: 1.1;
+}
+
+.headline-note {
+  font-weight: 600;
+  font-size: 0.9rem;
+  display: block;
+}
+
+.headline-label {
+  font-size: 0.85rem;
+  opacity: 0.75;
+  display: block;
+  margin-top: 6px;
+}
+
+.headline-caption {
+  font-size: 0.85rem;
+  opacity: 0.75;
+  margin: 0 0 40px;
+}
+
+/* controls */
+.bench-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  border: var(--border);
+  background: var(--surface);
+  box-shadow: var(--shadow);
+  padding: 14px 16px;
+  margin-bottom: 32px;
+  position: sticky;
+  top: 12px;
+  z-index: 2;
+}
+
+.control-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.control-label {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-weight: 800;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  opacity: 0.7;
+}
+
+.control-chip {
+  font: inherit;
+  font-size: 0.85rem;
+  font-weight: 600;
+  border: 2px solid var(--ink);
+  background: var(--cream);
+  color: var(--ink);
+  padding: 4px 12px;
+  cursor: pointer;
+}
+
+.control-chip:hover {
+  background: var(--sun);
+  color: var(--ink-fixed);
+}
+
+.control-chip[aria-pressed='true'] {
+  background: var(--blue);
+  color: var(--cream-fixed);
+  box-shadow: 2px 2px 0 var(--ink);
+}
+
+/* groups and rows */
+.bench-group {
+  margin-bottom: 44px;
+}
+
+.bench-group h2 {
+  font-size: 1.4rem;
+  margin-bottom: 18px;
+  padding-bottom: 8px;
+  border-bottom: var(--border);
+}
+
+.group-blurb {
+  display: block;
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 0.85rem;
+  opacity: 0.75;
+  letter-spacing: 0;
+  margin-top: 4px;
+}
+
+.bench-row {
+  border: var(--border);
+  background: var(--surface);
+  box-shadow: var(--shadow);
+  padding: 14px 16px;
+  margin-bottom: 14px;
+}
+
+.row-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+}
+
+.row-label {
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.row-ratio {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-weight: 800;
+  font-size: 0.9rem;
+  border: 2px solid var(--ink);
+  padding: 2px 8px;
+  white-space: nowrap;
+}
+
+.row-ratio.win,
+.bench-table td.win {
+  background: var(--sun);
+  color: var(--ink-fixed);
+}
+
+.row-ratio.loss,
+.bench-table td.loss {
+  background: var(--cream);
+  color: var(--ink);
+}
+
+/* bars — width is value ÷ the larger of the pair, so the pair is to true scale */
+.bar-line {
+  display: grid;
+  grid-template-columns: 4.5rem 1fr 6rem;
+  align-items: center;
+  gap: 10px;
+  margin-top: 6px;
+}
+
+.bar-name {
+  font-size: 0.8rem;
+  font-weight: 600;
+  opacity: 0.8;
+}
+
+.bar-track {
+  display: block;
+  border: 2px solid var(--ink);
+  background: var(--cream);
+  height: 22px;
+}
+
+.bar {
+  display: block;
+  height: 100%;
+  background: var(--ink);
+}
+
+.bar.lead {
+  background: var(--blue);
+}
+
+.bar-value {
+  font-family: 'Menlo', 'Consolas', monospace;
+  font-size: 0.8rem;
+  text-align: right;
+}
+
+/* table view */
+.bench-table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 0.9rem;
+}
+
+.bench-table th,
+.bench-table td {
+  border: 2px solid var(--ink);
+  padding: 7px 10px;
+  text-align: left;
+}
+
+.bench-table thead th {
+  background: var(--sun);
+  color: var(--ink-fixed);
+  font-family: 'Bricolage Grotesque', sans-serif;
+}
+
+.bench-table tbody th {
+  font-weight: 600;
+}
+
+.bench-table td {
+  font-family: 'Menlo', 'Consolas', monospace;
+}
+
+.bench-legend,
+.bench-notes li {
+  font-size: 0.9rem;
+}
+
+.bench-legend {
+  opacity: 0.8;
+  margin-bottom: 44px;
+}
+
+.bench-notes h2 {
+  font-size: 1.4rem;
+  margin-bottom: 14px;
+  padding-bottom: 8px;
+  border-bottom: var(--border);
+}
+
+.bench-notes li {
+  margin-bottom: 10px;
+}
+
+.bench-notes code {
+  font-family: 'Menlo', 'Consolas', monospace;
+  background: var(--surface);
+  border: 2px solid var(--ink);
+  padding: 1px 5px;
+  font-size: 0.85em;
+}
+
+/* filtering — CSS does the work, the island only sets these attributes */
+.bench[data-view='bars'] .bench-table-view,
+.bench[data-view='table'] .bench-bars-view {
+  display: none;
+}
+
+.bench[data-category='dev'] .bench-row:not([data-cat='dev']),
+.bench[data-category='build'] .bench-row:not([data-cat='build']),
+.bench[data-category='memory'] .bench-row:not([data-cat='memory']),
+.bench[data-category='payload'] .bench-row:not([data-cat='payload']),
+.bench[data-phase='cold'] .bench-row:not([data-phase='cold']),
+.bench[data-phase='warm'] .bench-row:not([data-phase='warm']) {
+  display: none;
+}
+
+.bench-empty {
+  display: none;
+  border: var(--border);
+  background: var(--surface);
+  box-shadow: var(--shadow);
+  padding: 16px 18px;
+  font-size: 0.9rem;
+}
+
+.bench[data-category='payload'][data-phase='cold'] .bench-empty,
+.bench[data-category='payload'][data-phase='warm'] .bench-empty {
+  display: block;
+}
+
+.bench[data-category='payload'][data-phase='cold'] .bench-group,
+.bench[data-category='payload'][data-phase='warm'] .bench-group {
+  display: none;
+}
