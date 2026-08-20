@@ -71,9 +71,9 @@ export default function Home() {
         <div class="wrap">
           <h2 id="evidence-h">The numbers, not the adjectives</h2>
           <p class="lede">
-            Incremental by design: server-rendered pages ship no JavaScript at
-            all, and you pay only for the islands you hydrate — on Preact, not
-            React.
+            Incremental by design:You can start with no JavaScript at all and
+            pay only for features you add including React and Next
+            compatibility.
           </p>
           <div class="badge-grid">
             {BADGES.map(([num, desc]) => (
@@ -90,8 +90,7 @@ export default function Home() {
         <div class="wrap">
           <h2 id="start-h">Start in one line</h2>
           <p class="lede">
-            No config to read first. Create an app, or point pnext at one you
-            already have.
+            Create an app, or point pnext at one you already have.
           </p>
           <CopyCode />
           <p class="lede" style={{ marginBottom: 0 }}>
