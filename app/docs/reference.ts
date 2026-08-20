@@ -64,10 +64,16 @@ function titleOf(source: string, slug: string) {
   return source.match(/^#\s+(.+)$/m)?.[1]?.trim() ?? slug
 }
 
-// ./routing.md#segments -> /docs/routing#segments
+// ./routing.md#segments -> /docs/routing#segments, wired for the pnext client router
 function rewriteLinks(html: string) {
-  return html.replace(
-    /href="(?:\.\/)?([a-z0-9-]+)\.md(#[^"]*)?"/g,
-    (_m, slug, hash) => `href="/docs/${slug}${hash ?? ''}"`,
-  )
+  return html
+    .replace(
+      /href="(?:\.\/)?([a-z0-9-]+)\.md(#[^"]*)?"/g,
+      (_m, slug, hash) => `href="/docs/${slug}${hash ?? ''}"`,
+    )
+    .replace(
+      /<a ([^>]*?)href="(\/(?!\/)[^"]*)"/g,
+      (_m, attrs, href) =>
+        `<a ${attrs}href="${href}" data-pnext-link="true" data-prefetch="visible"`,
+    )
 }

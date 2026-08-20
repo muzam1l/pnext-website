@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'preact/hooks'
+import { Link } from '@wular/pnext/link'
 import type { DocEntry } from './reference'
 
 export function DocsNav({ docs, current }: { docs: DocEntry[]; current: string }) {
@@ -27,13 +28,26 @@ export function DocsNav({ docs, current }: { docs: DocEntry[]; current: string }
         <ul>
           {docs.map(doc => (
             <li key={doc.slug}>
-              <a
-                href={doc.slug === 'overview' ? '/docs' : `/docs/${doc.slug}`}
-                class={doc.slug === current ? 'active' : undefined}
-                aria-current={doc.slug === current ? 'page' : undefined}
-              >
-                {doc.title}
-              </a>
+              {doc.slug === 'overview' ? (
+                <Link
+                  href="/docs"
+                  prefetch="visible"
+                  className={doc.slug === current ? 'active' : undefined}
+                  aria-current={doc.slug === current ? 'page' : undefined}
+                >
+                  {doc.title}
+                </Link>
+              ) : (
+                <Link
+                  href="/docs/[slug]"
+                  params={{ slug: doc.slug }}
+                  prefetch="visible"
+                  className={doc.slug === current ? 'active' : undefined}
+                  aria-current={doc.slug === current ? 'page' : undefined}
+                >
+                  {doc.title}
+                </Link>
+              )}
             </li>
           ))}
         </ul>

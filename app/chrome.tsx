@@ -1,3 +1,4 @@
+import { Link } from '@wular/pnext/link'
 import { ThemeToggle } from './theme-toggle'
 
 /** Add nav links here; each renders as a chip, left of the theme toggle. */
@@ -11,20 +12,26 @@ export function Header() {
   return (
     <header class="site">
       <div class="nav">
-        <a class="wordmark" href="/">
+        <Link className="wordmark" href="/" prefetch="visible">
           pnext
-        </a>
+        </Link>
         <nav class="right" aria-label="Main">
           <ul class="nav-links">
             {NAV_LINKS.map(link => (
               <li key={link.href}>
-                <a
-                  class="chip"
-                  href={link.href}
-                  {...(link.external ? { target: '_blank', rel: 'noreferrer noopener' } : {})}
-                >
-                  {link.label}
-                </a>
+                {link.external ? (
+                  <a class="chip" href={link.href} target="_blank" rel="noreferrer noopener">
+                    {link.label}
+                  </a>
+                ) : (
+                  <Link
+                    className="chip"
+                    href={link.href as '/docs' | '/benchmarks'}
+                    prefetch="visible"
+                  >
+                    {link.label}
+                  </Link>
+                )}
               </li>
             ))}
           </ul>
