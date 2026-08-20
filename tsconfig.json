@@ -1,5 +1,5 @@
 {
-  "extends": "../node_modules/@wular/pnext/config/ts/react.json",
+  "extends": "@wular/pnext/config/ts/react.json",
   "compilerOptions": {
     "jsxImportSource": "preact",
     "types": ["bun-types"],
