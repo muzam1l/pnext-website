@@ -6,34 +6,23 @@ type Option = { id: string; label: string };
 
 /**
  * The page's only island. It owns no content: it flips data-* attributes on the
- * server-rendered #bench wrapper, and CSS does the filtering and view switching.
+ * server-rendered #bench wrapper, and CSS does the filtering.
  */
 export function BenchControls({ categories, phases }: { categories: Option[]; phases: Option[] }) {
   const [category, setCategory] = useState('all');
   const [phase, setPhase] = useState('all');
-  const [view, setView] = useState('bars');
 
   useEffect(() => {
     const root = document.getElementById('bench');
     if (!root) return;
     root.dataset.category = category;
     root.dataset.phase = phase;
-    root.dataset.view = view;
-  }, [category, phase, view]);
+  }, [category, phase]);
 
   return (
     <div class="bench-controls">
       <Group label="Category" options={[{ id: 'all', label: 'All' }, ...categories]} value={category} onPick={setCategory} />
       <Group label="Run" options={[{ id: 'all', label: 'All' }, ...phases]} value={phase} onPick={setPhase} />
-      <Group
-        label="View"
-        options={[
-          { id: 'bars', label: 'Bars' },
-          { id: 'table', label: 'Table' },
-        ]}
-        value={view}
-        onPick={setView}
-      />
     </div>
   );
 }

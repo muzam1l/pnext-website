@@ -44,7 +44,7 @@ export default function Benchmarks() {
             Bun's runtime baseline).
           </p>
 
-          <div id="bench" class="bench" data-category="all" data-phase="all" data-view="bars">
+          <div id="bench" class="bench" data-category="all" data-phase="all">
             <BenchControls categories={CATEGORIES} phases={PHASES} />
 
             <p class="bench-empty">
@@ -52,76 +52,46 @@ export default function Benchmarks() {
               <strong>Run</strong> back to <strong>All</strong> to see them.
             </p>
 
-            <div class="bench-bars-view">
-              <div class="bench-legend-keys">
-                <span><span class="legend-swatch pnext" />pnext</span>
-                <span><span class="legend-swatch" />Next.js</span>
-              </div>
-              {FIXTURES.map(fixture => (
-                <section class="bench-group" key={fixture.id} aria-labelledby={`f-${fixture.id}`}>
-                  <h2 id={`f-${fixture.id}`}>
-                    {fixture.label}
-                    <span class="group-blurb">{fixture.blurb}</span>
-                  </h2>
-                  <div class="bench-panel">
-                    {rowsFor(fixture.id).map(({ metric, row }) => {
-                      const [pnext, pnextText, next, nextText, ratio] = row;
-                      const max = Math.max(pnext, next);
-                      return (
-                        <div class="bench-row" data-cat={metric.category} data-phase={metric.phase} key={metric.id}>
-                          <span class="row-label">{metric.label}</span>
-                          <div class="row-meta">
-                            <div class="row-bars">
-                              <span class="mini-bar-track">
-                                <span class="mini-bar pnext" style={{ width: `${((pnext / max) * 100).toFixed(1)}%` }} />
-                              </span>
-                              <span class="mini-bar-track">
-                                <span class="mini-bar" style={{ width: `${((next / max) * 100).toFixed(1)}%` }} />
-                              </span>
-                            </div>
-                            <div class="row-values">
-                              <span class="row-value">{pnextText}</span>
-                              <span class="row-value">{nextText}</span>
-                            </div>
-                            <span class={ratio >= 1 ? 'row-ratio win' : 'row-ratio loss'}>
-                              {ratio.toFixed(2)}×
+            <div class="bench-legend-keys">
+              <span><span class="legend-swatch pnext" />pnext</span>
+              <span><span class="legend-swatch" />Next.js</span>
+            </div>
+            {FIXTURES.map(fixture => (
+              <section class="bench-group" key={fixture.id} aria-labelledby={`f-${fixture.id}`}>
+                <h2 id={`f-${fixture.id}`}>
+                  {fixture.label}
+                  <span class="group-blurb">{fixture.blurb}</span>
+                </h2>
+                <div class="bench-panel">
+                  {rowsFor(fixture.id).map(({ metric, row }) => {
+                    const [pnext, pnextText, next, nextText, ratio] = row;
+                    const max = Math.max(pnext, next);
+                    return (
+                      <div class="bench-row" data-cat={metric.category} data-phase={metric.phase} key={metric.id}>
+                        <span class="row-label">{metric.label}</span>
+                        <div class="row-meta">
+                          <div class="row-bars">
+                            <span class="mini-bar-track">
+                              <span class="mini-bar pnext" style={{ width: `${((pnext / max) * 100).toFixed(1)}%` }} />
+                            </span>
+                            <span class="mini-bar-track">
+                              <span class="mini-bar" style={{ width: `${((next / max) * 100).toFixed(1)}%` }} />
                             </span>
                           </div>
+                          <div class="row-values">
+                            <span class="row-value">{pnextText}</span>
+                            <span class="row-value">{nextText}</span>
+                          </div>
+                          <span class={ratio >= 1 ? 'row-ratio win' : 'row-ratio loss'}>
+                            {ratio.toFixed(2)}×
+                          </span>
                         </div>
-                      );
-                    })}
-                  </div>
-                </section>
-              ))}
-            </div>
-
-            <div class="bench-table-view">
-              {FIXTURES.map(fixture => (
-                <section class="bench-group" key={fixture.id}>
-                  <h2>{fixture.label}</h2>
-                  <table class="bench-table">
-                    <thead>
-                      <tr>
-                        <th scope="col">Metric</th>
-                        <th scope="col">pnext</th>
-                        <th scope="col">Next.js</th>
-                        <th scope="col">Ratio</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {rowsFor(fixture.id).map(({ metric, row }) => (
-                        <tr class="bench-row" data-cat={metric.category} data-phase={metric.phase} key={metric.id}>
-                          <th scope="row">{metric.label}</th>
-                          <td>{row[1]}</td>
-                          <td>{row[3]}</td>
-                          <td class={row[4] >= 1 ? 'win' : 'loss'}>{row[4].toFixed(2)}×</td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </section>
-              ))}
-            </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </section>
+            ))}
           </div>
 
           <p class="bench-legend">
@@ -130,6 +100,7 @@ export default function Benchmarks() {
 
           <section class="bench-group">
             <h2>Client runtime bundles</h2>
+            <div class="bench-table-wrap">
             <table class="bench-table">
               <thead>
                 <tr>
@@ -150,6 +121,7 @@ export default function Benchmarks() {
                 ))}
               </tbody>
             </table>
+            </div>
           </section>
 
           <section class="bench-notes">

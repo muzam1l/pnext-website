@@ -6,7 +6,7 @@
 }
 
 .hero .big {
-  font-size: clamp(2.3rem, 8.5vw, 5rem);
+  font-size: clamp(3.4rem, 8.5vw, 5rem);
   line-height: 0.95;
 }
 
@@ -243,4 +243,22 @@
   font-size: 1.4rem;
   font-weight: 800;
   font-family: 'Bricolage Grotesque', sans-serif;
+}
+
+@media (max-width: 640px) {
+  .hero {
+    padding: 56px 20px 48px;
+  }
+
+  .hero .tagline {
+    padding: 36px 8px 0;
+  }
+
+  .hero .actions {
+    margin-top: 44px;
+  }
+
+  .badge {
+    padding: 18px 16px;
+  }
 }

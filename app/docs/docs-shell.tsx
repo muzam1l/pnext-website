@@ -1,5 +1,6 @@
 import type { ComponentChildren } from 'preact';
 import { Header } from '../chrome';
+import { DocsNav } from './docs-nav';
 import type { DocEntry } from './reference';
 import './docs.css';
 
@@ -9,21 +10,7 @@ export function DocsShell({ docs, current, children }: { docs: DocEntry[]; curre
       <Header />
       <main class="docs">
         <div class="wrap docs-shell">
-          <nav class="docs-nav" aria-label="Docs">
-            <ul>
-              {docs.map(doc => (
-                <li key={doc.slug}>
-                  <a
-                    href={doc.slug === 'overview' ? '/docs' : `/docs/${doc.slug}`}
-                    class={doc.slug === current ? 'active' : undefined}
-                    aria-current={doc.slug === current ? 'page' : undefined}
-                  >
-                    {doc.title}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </nav>
+          <DocsNav docs={docs} current={current} />
           <div class="docs-content">{children}</div>
         </div>
       </main>

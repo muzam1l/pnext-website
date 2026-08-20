@@ -309,3 +309,43 @@ footer .wordmark {
   font-size: 1.05rem;
   margin: 0 0 36px;
 }
+
+/* mobile */
+@media (max-width: 640px) {
+  .nav {
+    padding: 14px 16px;
+  }
+
+  .nav .right {
+    gap: 4px;
+  }
+
+  .nav-links {
+    gap: 2px;
+  }
+
+  .nav a.chip {
+    padding: 8px 7px;
+  }
+
+  .wrap {
+    padding: 0 12px;
+  }
+
+  section {
+    padding: 48px 12px;
+  }
+
+  section .lede {
+    margin-bottom: 28px;
+  }
+
+  .code-block {
+    padding: 16px;
+    font-size: 0.85rem;
+  }
+
+  .docs {
+    padding: 36px 12px 56px;
+  }
+}

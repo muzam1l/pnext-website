@@ -51,21 +51,6 @@
   opacity: 0.7;
   font-family: 'Menlo', 'Consolas', monospace;
   font-size: 0.8rem;
-  white-space: nowrap;
-}
-
-.leaderboard-bar-track {
-  grid-area: bar;
-  display: block;
-  height: 8px;
-  background: var(--cream);
-  border: 1px solid var(--ink);
-}
-
-.leaderboard-bar {
-  display: block;
-  height: 100%;
-  background: var(--ink);
 }
 
 .leaderboard-chip {
@@ -90,19 +75,6 @@
   color: var(--cream-fixed);
 }
 
-@media (max-width: 360px) {
-  .leaderboard-row {
-    grid-template-columns: 1fr auto;
-    grid-template-areas:
-      'label chip'
-      'bar bar';
-  }
-
-  .leaderboard-bar-track {
-    margin-top: 4px;
-  }
-}
-
 .headline-caption {
   font-size: 0.85rem;
   opacity: 0.75;
@@ -122,6 +94,14 @@
   position: sticky;
   top: 12px;
   z-index: 2;
+}
+
+@media (max-width: 720px) {
+  .bench-controls {
+    position: static;
+    gap: 10px 18px;
+    padding: 12px;
+  }
 }
 
 .control-group {
@@ -283,22 +263,21 @@
   justify-self: end;
 }
 
-.row-ratio.win,
-.bench-table td.win {
+.row-ratio.win {
   background: var(--sun);
   color: var(--ink-fixed);
 }
 
-.row-ratio.loss,
-.bench-table td.loss {
+.row-ratio.loss {
   background: #CE5A4A;
   color: var(--cream-fixed);
 }
 
-@media (max-width: 360px) {
+@media (max-width: 640px) {
   .bench-row {
     grid-template-columns: 1fr;
     row-gap: 6px;
+    padding: 12px 0;
   }
 
   .row-meta {
@@ -306,7 +285,7 @@
     grid-template-areas:
       'bars bars'
       'values chip';
-    row-gap: 6px;
+    gap: 8px 14px;
   }
 
   .row-bars {
@@ -321,10 +300,34 @@
   .row-ratio {
     grid-area: chip;
     justify-self: end;
+    align-self: end;
+  }
+
+  /* lists go flush with the page gutter — no boxed inset on small screens */
+  .bench-panel,
+  .leaderboard {
+    border: 0;
+    box-shadow: none;
+    padding: 0;
+    background: none;
+  }
+
+  .bench-row,
+  .leaderboard-row {
+    border-bottom: 2px solid var(--ink);
+  }
+
+  .bench-row:last-child,
+  .leaderboard-row:last-child {
+    border-bottom: none;
   }
 }
 
-/* table view */
+/* client runtime bundles table */
+.bench-table-wrap {
+  overflow-x: auto;
+}
+
 .bench-table {
   border-collapse: collapse;
   width: 100%;
@@ -382,11 +385,6 @@
 }
 
 /* filtering — CSS does the work, the island only sets these attributes */
-.bench[data-view='bars'] .bench-table-view,
-.bench[data-view='table'] .bench-bars-view {
-  display: none;
-}
-
 .bench[data-category='dev'] .bench-row:not([data-cat='dev']),
 .bench[data-category='build'] .bench-row:not([data-cat='build']),
 .bench[data-category='memory'] .bench-row:not([data-cat='memory']),
