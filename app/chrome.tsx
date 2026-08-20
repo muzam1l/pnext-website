@@ -1,11 +1,11 @@
-import { ThemeToggle } from './theme-toggle';
+import { ThemeToggle } from './theme-toggle'
 
 /** Add nav links here; each renders as a chip, left of the theme toggle. */
 const NAV_LINKS = [
   { label: 'docs', href: '/docs' },
   { label: 'benchmarks', href: '/benchmarks' },
   { label: 'github', href: 'https://github.com/muzam1l/pnext', external: true },
-];
+]
 
 export function Header() {
   return (
@@ -18,7 +18,11 @@ export function Header() {
           <ul class="nav-links">
             {NAV_LINKS.map(link => (
               <li key={link.href}>
-                <a class="chip" href={link.href} {...(link.external ? { target: '_blank', rel: 'noreferrer noopener' } : {})}>
+                <a
+                  class="chip"
+                  href={link.href}
+                  {...(link.external ? { target: '_blank', rel: 'noreferrer noopener' } : {})}
+                >
                   {link.label}
                 </a>
               </li>
@@ -28,6 +32,5 @@ export function Header() {
         </nav>
       </div>
     </header>
-  );
+  )
 }
-

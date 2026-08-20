@@ -1,10 +1,10 @@
-'use client';
+'use client'
 
-import { useState } from 'preact/hooks';
-import type { DocEntry } from './reference';
+import { useState } from 'preact/hooks'
+import type { DocEntry } from './reference'
 
 export function DocsNav({ docs, current }: { docs: DocEntry[]; current: string }) {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(false)
 
   return (
     <nav class={open ? 'docs-nav open' : 'docs-nav'} aria-label="Docs">
@@ -21,7 +21,7 @@ export function DocsNav({ docs, current }: { docs: DocEntry[]; current: string }
         id="docs-nav-panel"
         class="docs-nav-panel"
         onClick={event => {
-          if (event.target === event.currentTarget) setOpen(false);
+          if (event.target === event.currentTarget) setOpen(false)
         }}
       >
         <ul>
@@ -39,5 +39,5 @@ export function DocsNav({ docs, current }: { docs: DocEntry[]; current: string }
         </ul>
       </div>
     </nav>
-  );
+  )
 }

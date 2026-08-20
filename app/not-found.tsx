@@ -1,5 +1,5 @@
-import { Header } from './chrome';
-import './docs/docs.css';
+import { Header } from './chrome'
+import './docs/docs.css'
 
 export default function NotFound() {
   return (
@@ -15,5 +15,5 @@ export default function NotFound() {
         </div>
       </main>
     </>
-  );
+  )
 }

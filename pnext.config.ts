@@ -1,5 +1,5 @@
-import type { PNextConfig } from '@wular/pnext';
+import type { PNextConfig } from '@wular/pnext'
 
 export default {
   outDir: '.pnext',
-} satisfies PNextConfig;
+} satisfies PNextConfig

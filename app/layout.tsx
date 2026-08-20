@@ -1,5 +1,5 @@
-import type { LayoutProps, Metadata, Viewport } from '@wular/pnext';
-import './globals.css';
+import type { LayoutProps, Metadata, Viewport } from '@wular/pnext'
+import './globals.css'
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://pnext.dev'),
@@ -7,10 +7,12 @@ export const metadata: Metadata = {
     default: 'pnext — a fast little framework',
     template: '%s — pnext',
   },
-  description: 'A fast little framework for server-first React apps, fully compatible with Next.js.',
+  description:
+    'A fast little framework for server-first React apps, fully compatible with Next.js.',
   openGraph: {
     title: 'pnext — a fast little framework',
-    description: 'A fast little framework for server-first React apps, fully compatible with Next.js.',
+    description:
+      'A fast little framework for server-first React apps, fully compatible with Next.js.',
     url: 'https://pnext.dev',
     siteName: 'pnext',
     type: 'website',
@@ -18,16 +20,16 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary',
     title: 'pnext — a fast little framework',
-    description: 'A fast little framework for server-first React apps, fully compatible with Next.js.',
+    description:
+      'A fast little framework for server-first React apps, fully compatible with Next.js.',
   },
-};
+}
 
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
   colorScheme: 'light dark',
-};
-
+}
 
 export default function RootLayout({ children }: LayoutProps) {
   return (
@@ -42,5 +44,5 @@ export default function RootLayout({ children }: LayoutProps) {
       </head>
       <body>{children}</body>
     </html>
-  );
+  )
 }

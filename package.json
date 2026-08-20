@@ -6,13 +6,16 @@
     "build": "pnext build",
     "start": "pnext start",
     "analyze": "pnext analyze",
-    "typecheck": "pnext typegen && tsc --noEmit"
+    "typecheck": "pnext typegen && tsc --noEmit",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
   },
   "dependencies": {
     "marked": "^16.4.0",
     "preact": "^10"
   },
   "devDependencies": {
-    "@wular/pnext": "^0.0.4"
+    "@wular/pnext": "^0.0.4",
+    "prettier": "^3.9.6"
   }
 }

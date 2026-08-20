@@ -1,10 +1,18 @@
-import type { ComponentChildren } from 'preact';
-import { Header } from '../chrome';
-import { DocsNav } from './docs-nav';
-import type { DocEntry } from './reference';
-import './docs.css';
+import type { ComponentChildren } from 'preact'
+import { Header } from '../chrome'
+import { DocsNav } from './docs-nav'
+import type { DocEntry } from './reference'
+import './docs.css'
 
-export function DocsShell({ docs, current, children }: { docs: DocEntry[]; current: string; children: ComponentChildren }) {
+export function DocsShell({
+  docs,
+  current,
+  children,
+}: {
+  docs: DocEntry[]
+  current: string
+  children: ComponentChildren
+}) {
   return (
     <>
       <Header />
@@ -15,5 +23,5 @@ export function DocsShell({ docs, current, children }: { docs: DocEntry[]; curre
         </div>
       </main>
     </>
-  );
+  )
 }

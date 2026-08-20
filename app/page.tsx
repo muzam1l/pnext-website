@@ -1,30 +1,30 @@
-import { dynamic } from "@wular/pnext/dynamic";
-import { Header } from "./chrome";
-import "./page.css";
+import { dynamic } from '@wular/pnext/dynamic'
+import { Header } from './chrome'
+import './page.css'
 
-const CopyCode = dynamic(() => import("./copy-code").then((m) => m.CopyCode), {
-  load: "visible",
+const CopyCode = dynamic(() => import('./copy-code').then(m => m.CopyCode), {
+  load: 'visible',
   ssr: true,
-});
+})
 
 // Rounded by hand for display; exact per-cell numbers live on /benchmarks
 // (reference/data/bench.json). Keep in sync when requoting a bench run.
 const BADGES = [
-  ["0 KB", "JavaScript shipped on server-rendered pages"],
-  ["~1 KB gzip", "adds client-side navigation and prefetching"],
-  ["7.5 KB", "whole framework, hydrating on Preact"],
-  ["12.5 KB", "with full React compatibility included"],
-  ["10-12x", "faster first page render than Next.js in dev"],
-  ["3.5-4x", "less memory used in dev than Next.js"],
-  ["7-9x", "faster production builds than Next.js"],
-  ["4,300+", "assertions passing from Next.js's own App Router test suite"],
-];
+  ['0 KB', 'JavaScript shipped on server-rendered pages'],
+  ['~1 KB gzip', 'adds client-side navigation and prefetching'],
+  ['7.5 KB', 'whole framework, hydrating on Preact'],
+  ['12.5 KB', 'with full React compatibility included'],
+  ['10-12x', 'faster first page render than Next.js in dev'],
+  ['3.5-4x', 'less memory used in dev than Next.js'],
+  ['7-9x', 'faster production builds than Next.js'],
+  ['4,300+', "assertions passing from Next.js's own App Router test suite"],
+]
 
 const RUNGS = [
-  ["core pnext", "Pure Preact. The smallest, fastest rung."],
-  ["compat.react", "Runs React components and libraries as-is."],
-  ["compat.next", "Runs a whole Next.js App Router app, unchanged."],
-];
+  ['core pnext', 'Pure Preact. The smallest, fastest rung.'],
+  ['compat.react', 'Runs React components and libraries as-is.'],
+  ['compat.next', 'Runs a whole Next.js App Router app, unchanged.'],
+]
 
 export default function Home() {
   return (
@@ -34,15 +34,13 @@ export default function Home() {
       <section class="hero">
         <div class="stickers">
           <span class="sticker s1">super fast dev</span>
-          <span class="sticker s2">
-            100% compatible with Next.js App Router
-          </span>
+          <span class="sticker s2">100% compatible with Next.js App Router</span>
           <span class="sticker s3">instant production builds</span>
         </div>
 
         <h1 class="big display">pnext</h1>
         <p class="tagline">
-          A{" "}
+          A{' '}
           <span class="circle-wrap">
             fast
             <svg viewBox="0 0 140 70" fill="none" aria-hidden="true">
@@ -53,9 +51,8 @@ export default function Home() {
                 stroke-linecap="round"
               />
             </svg>
-          </span>{" "}
-          little framework for server-first React apps, fully compatible with
-          Next.js.
+          </span>{' '}
+          little framework for server-first React apps, fully compatible with Next.js.
         </p>
         <div class="actions">
           <a class="btn primary" href="#start">
@@ -71,9 +68,8 @@ export default function Home() {
         <div class="wrap">
           <h2 id="evidence-h">The numbers, not the adjectives</h2>
           <p class="lede">
-            Incremental by design:You can start with no JavaScript at all and
-            pay only for features you add including React and Next
-            compatibility.
+            Incremental by design:You can start with no JavaScript at all and pay only for features
+            you add including React and Next compatibility.
           </p>
           <div class="badge-grid">
             {BADGES.map(([num, desc]) => (
@@ -89,13 +85,11 @@ export default function Home() {
       <section id="start" aria-labelledby="start-h">
         <div class="wrap">
           <h2 id="start-h">Start in one line</h2>
-          <p class="lede">
-            Create an app, or point pnext at one you already have.
-          </p>
+          <p class="lede">Create an app, or point pnext at one you already have.</p>
           <CopyCode />
           <p class="lede" style={{ marginBottom: 0 }}>
-            Migrate rewrites your scripts and config, scans your source, and
-            reports anything worth a look. It never edits your code.
+            Migrate rewrites your scripts and config, scans your source, and reports anything worth
+            a look. It never edits your code.
           </p>
         </div>
       </section>
@@ -103,9 +97,7 @@ export default function Home() {
       <section id="ladder" class="wash-blue" aria-labelledby="ladder-h">
         <div class="wrap">
           <h2 id="ladder-h">Climb the compat ladder</h2>
-          <p class="lede">
-            Start wherever your app already is. Move up only when it suits you.
-          </p>
+          <p class="lede">Start wherever your app already is. Move up only when it suits you.</p>
           <div class="ladder">
             {RUNGS.map(([tag, text], i) => (
               <>
@@ -120,5 +112,5 @@ export default function Home() {
         </div>
       </section>
     </>
-  );
+  )
 }

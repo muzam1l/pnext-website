@@ -59,6 +59,7 @@
 @media (max-width: 800px) {
   .docs-shell {
     flex-direction: column;
+    align-items: stretch;
     gap: 0;
   }
 
