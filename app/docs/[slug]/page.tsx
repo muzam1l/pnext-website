@@ -1,6 +1,7 @@
 import type { Metadata } from '@wular/pnext'
 import { notFound } from '@wular/pnext/navigation'
 import type { PageProps, StaticParams } from '#gen/app/docs/[slug]/page'
+import { Enhance } from '../enhance'
 import { DocsShell } from '../docs-shell'
 import { listDocs, readDoc } from '../reference'
 
@@ -11,7 +12,10 @@ export const metadata: Metadata = {
 }
 
 export function params(): StaticParams {
-  return listDocs().then(docs => docs.map(doc => ({ slug: doc.slug })))
+  // 'getting-started' is hand-authored at /docs, so it has no [slug] page.
+  return listDocs().then(docs =>
+    docs.filter(doc => doc.slug !== 'getting-started').map(doc => ({ slug: doc.slug })),
+  )
 }
 
 export default async function DocPage({ params }: PageProps) {
@@ -22,6 +26,7 @@ export default async function DocPage({ params }: PageProps) {
   return (
     <DocsShell docs={docs} current={slug}>
       <article class="prose" dangerouslySetInnerHTML={{ __html: doc.html }} />
+      <Enhance />
     </DocsShell>
   )
 }

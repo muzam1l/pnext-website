@@ -1,4 +1,5 @@
 import { dynamic } from '@wular/pnext/dynamic'
+import { Link } from '@wular/pnext/link'
 import { Header } from './chrome'
 import './page.css'
 
@@ -55,12 +56,12 @@ export default function Home() {
           little framework for server-first React apps, fully compatible with Next.js.
         </p>
         <div class="actions">
-          <a class="btn primary" href="#start">
+          <Link href="/docs" className="btn primary">
             Getting started
-          </a>
-          <a class="btn secondary" href="/benchmarks">
+          </Link>
+          <Link href="/benchmarks" className="btn secondary">
             Performance benchmarks
-          </a>
+          </Link>
         </div>
       </section>
 
@@ -86,10 +87,15 @@ export default function Home() {
         <div class="wrap">
           <h2 id="start-h">Start in one line</h2>
           <p class="lede">Create an app, or point pnext at one you already have.</p>
-          <CopyCode />
+          <CopyCode command="bunx @wular/pnext create my-app" comment="# new app" />
+          <CopyCode
+            command="bunx @wular/pnext migrate"
+            comment="# or migrate an existing Next.js app in place"
+          />
           <p class="lede" style={{ marginBottom: 0 }}>
             Migrate rewrites your scripts and config, scans your source, and reports anything worth
-            a look. It never edits your code.
+            a look. It never edits your code. Full walkthrough in{' '}
+            <Link href="/docs">Getting Started</Link>.
           </p>
         </div>
       </section>

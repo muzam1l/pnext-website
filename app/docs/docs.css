@@ -95,6 +95,10 @@
     display: none;
   }
 
+  body:has(.docs-nav.open) {
+    overflow: hidden;
+  }
+
   .docs-nav.open .docs-nav-panel {
     display: flex;
     align-items: flex-end;
@@ -169,6 +173,11 @@
   background: var(--surface);
   border: 2px solid var(--ink);
   padding: 1px 5px;
+  white-space: nowrap;
+}
+
+.prose pre code {
+  white-space: pre;
 }
 
 .prose pre {
@@ -249,5 +258,130 @@
 
   .prose code {
     overflow-wrap: anywhere;
+    white-space: normal;
   }
+
+  .prose pre code {
+    white-space: pre;
+  }
+}
+
+/* copy button injected on doc code blocks */
+.prose pre {
+  position: relative;
+}
+
+.pre-copy {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: inline-flex;
+  border: 0;
+  background: none;
+  color: var(--cream-fixed);
+  opacity: 0.55;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.pre-copy:hover {
+  opacity: 1;
+}
+
+.pre-copy svg {
+  width: 16px;
+  height: 16px;
+}
+
+.pre-copy.copied {
+  color: var(--sun);
+  opacity: 1;
+}
+
+/* markdown-defined tabs (tabs:start / tabs:end markers) */
+.md-tabs {
+  margin: 26px 0 22px;
+}
+
+.md-tabs [role='tablist'] {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 28px;
+  margin-bottom: 20px;
+}
+
+.md-tabs [role='tab'] {
+  font-size: 1rem;
+  font-weight: 600;
+  border: 0;
+  background: none;
+  color: var(--ink);
+  padding: 6px 0;
+  border-bottom: 3px solid transparent;
+  cursor: pointer;
+  opacity: 0.45;
+}
+
+.md-tabs [role='tab']:hover {
+  opacity: 0.8;
+}
+
+.md-tabs [role='tab'][aria-selected='true'] {
+  opacity: 1;
+  border-bottom-color: var(--ink);
+}
+
+.md-tabs [role='tabpanel'] {
+  display: none;
+}
+
+/* syntax highlighting; the pre background is the fixed dark ink in both themes */
+.hljs-comment,
+.hljs-quote {
+  color: #9a94ad;
+  font-style: italic;
+}
+
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-meta {
+  color: #f7c85c;
+}
+
+.hljs-string,
+.hljs-regexp,
+.hljs-addition {
+  color: #9ad1a5;
+}
+
+.hljs-number,
+.hljs-literal,
+.hljs-deletion {
+  color: #f0987a;
+}
+
+.hljs-built_in {
+  color: #8fb8ff;
+}
+
+.hljs-title,
+.hljs-name,
+.hljs-selector-class,
+.hljs-selector-id {
+  color: #8fb8ff;
+}
+
+.hljs-attr,
+.hljs-attribute,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-property {
+  color: #c6b7ff;
+}
+
+.md-tabs[data-active='0'] [data-panel='0'],
+.md-tabs[data-active='1'] [data-panel='1'],
+.md-tabs[data-active='2'] [data-panel='2'],
+.md-tabs[data-active='3'] [data-panel='3'] {
+  display: block;
 }

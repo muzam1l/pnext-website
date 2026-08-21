@@ -12,7 +12,7 @@ export function Header() {
   return (
     <header class="site">
       <div class="nav">
-        <Link className="wordmark" href="/" prefetch="visible">
+        <Link className="wordmark" href="/">
           pnext
         </Link>
         <nav class="right" aria-label="Main">
@@ -24,11 +24,7 @@ export function Header() {
                     {link.label}
                   </a>
                 ) : (
-                  <Link
-                    className="chip"
-                    href={link.href as '/docs' | '/benchmarks'}
-                    prefetch="visible"
-                  >
+                  <Link className="chip" href={link.href as '/docs' | '/benchmarks'}>
                     {link.label}
                   </Link>
                 )}

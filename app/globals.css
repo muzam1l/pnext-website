@@ -82,7 +82,7 @@ a {
 
 /* header */
 header.site {
-  border-bottom: var(--border);
+  border-bottom: 2.5px solid var(--ink);
   background: var(--cream);
 }
 
@@ -90,7 +90,7 @@ header.site {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 20px 24px;
+  padding: 10px 24px;
   max-width: 1080px;
   margin: 0 auto;
 }

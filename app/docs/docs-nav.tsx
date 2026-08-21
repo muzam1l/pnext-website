@@ -28,10 +28,9 @@ export function DocsNav({ docs, current }: { docs: DocEntry[]; current: string }
         <ul>
           {docs.map(doc => (
             <li key={doc.slug}>
-              {doc.slug === 'overview' ? (
+              {doc.slug === 'getting-started' ? (
                 <Link
                   href="/docs"
-                  prefetch="visible"
                   className={doc.slug === current ? 'active' : undefined}
                   aria-current={doc.slug === current ? 'page' : undefined}
                 >
@@ -41,7 +40,6 @@ export function DocsNav({ docs, current }: { docs: DocEntry[]; current: string }
                 <Link
                   href="/docs/[slug]"
                   params={{ slug: doc.slug }}
-                  prefetch="visible"
                   className={doc.slug === current ? 'active' : undefined}
                   aria-current={doc.slug === current ? 'page' : undefined}
                 >
