@@ -87,9 +87,9 @@ export default function Home() {
         <div class="wrap">
           <h2 id="start-h">Start in one line</h2>
           <p class="lede">Create an app, or point pnext at one you already have.</p>
-          <CopyCode command="bunx @wular/pnext create my-app" comment="# new app" />
+          <CopyCode command="bunx @wular/pnext@latest create my-app" comment="# new app" />
           <CopyCode
-            command="bunx @wular/pnext migrate"
+            command="bunx @wular/pnext@latest migrate"
             comment="# or migrate an existing Next.js app in place"
           />
           <p class="lede" style={{ marginBottom: 0 }}>
