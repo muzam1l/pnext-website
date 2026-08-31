@@ -16,7 +16,7 @@
     "preact": "^10"
   },
   "devDependencies": {
-    "@wular/pnext": "0.0.7",
+    "@wular/pnext": "0.0.24",
     "prettier": "^3.9.6"
   }
 }

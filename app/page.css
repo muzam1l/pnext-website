@@ -10,6 +10,23 @@
   line-height: 0.95;
 }
 
+/* All em-based so the tile tracks the clamp()ed font size at every width. */
+.logo-tile {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 0.94em;
+  height: 0.94em;
+  background: var(--sun);
+  border: 0.045em solid var(--ink);
+  box-shadow: 0.05em 0.05em 0 var(--ink);
+  color: var(--ink-fixed);
+  padding-bottom: 0.22em;
+  margin-right: 0.1em;
+  transform: rotate(-7deg);
+  vertical-align: -0.11em;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .hero .big {
     display: inline-block;

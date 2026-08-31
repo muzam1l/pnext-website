@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     type: 'website',
   },
   twitter: {
-    card: 'summary',
+    card: 'summary_large_image',
     title: 'pnext — a fast little framework',
     description:
       'A fast little framework for server-first React apps, fully compatible with Next.js.',

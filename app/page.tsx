@@ -39,7 +39,9 @@ export default function Home() {
           <span class="sticker s3">instant production builds</span>
         </div>
 
-        <h1 class="big display">pnext</h1>
+        <h1 class="big display">
+          <span class="logo-tile">p</span>next
+        </h1>
         <p class="tagline">
           A{' '}
           <span class="circle-wrap">
@@ -69,8 +71,8 @@ export default function Home() {
         <div class="wrap">
           <h2 id="evidence-h">The numbers, not the adjectives</h2>
           <p class="lede">
-            Incremental by design:You can start with no JavaScript at all and pay only for features
-            you add including React and Next compatibility.
+            Incremental by design: you can start with no JavaScript at all and pay only for the
+            features you add, including React and Next.js compatibility.
           </p>
           <div class="badge-grid">
             {BADGES.map(([num, desc]) => (
