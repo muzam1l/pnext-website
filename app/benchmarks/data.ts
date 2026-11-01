@@ -66,7 +66,7 @@ type BenchJson = {
     direction: 'faster' | 'less' | 'smaller'
     detail?: string
   }[]
-  clientRuntimes: { name: string; raw: string; gzip: string; brotli: string }[]
+  clientRuntimes: { name: string; raw: string; gzip: string; brotli: string; deferred?: string }[]
 }
 
 export type FixtureId = 'hello' | 'ssr' | 'dashboard'

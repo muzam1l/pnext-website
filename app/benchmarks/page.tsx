@@ -128,14 +128,20 @@ export default function Benchmarks() {
 
           <section class="bench-group">
             <h2>Client runtime bundles</h2>
+            <p>
+              What a minimal page on each rung downloads at first paint, and what it can fetch
+              after: the navigation runtime on idle when the page has a Link, the rest on idle or on
+              demand.
+            </p>
             <div class="bench-table-wrap">
               <table class="bench-table">
                 <thead>
                   <tr>
-                    <th scope="col">Runtime</th>
-                    <th scope="col">Raw</th>
+                    <th scope="col">Page</th>
+                    <th scope="col">First paint raw</th>
                     <th scope="col">Gzip</th>
                     <th scope="col">Brotli</th>
+                    <th scope="col">Deferred gzip</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -145,6 +151,7 @@ export default function Benchmarks() {
                       <td>{runtime.raw}</td>
                       <td>{runtime.gzip}</td>
                       <td>{runtime.brotli}</td>
+                      <td>{runtime.deferred ?? '—'}</td>
                     </tr>
                   ))}
                 </tbody>
