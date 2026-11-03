@@ -11,6 +11,9 @@ export const metadata: Metadata = {
   description: 'A page of the pnext reference documentation.',
 }
 
+// Every doc is prerendered: an unknown slug is a 404, never a runtime read of the reference files.
+export const dynamicParams = false
+
 export function params(): StaticParams {
   // 'getting-started' is hand-authored at /docs, so it has no [slug] page.
   return listDocs().then(docs =>
