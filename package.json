@@ -4,6 +4,7 @@
   "scripts": {
     "dev": "pnext dev",
     "build": "pnext build",
+    "build:vercel": "pnext build --adapter vercel",
     "start": "pnext start",
     "analyze": "pnext analyze",
     "typecheck": "pnext typegen && tsc --noEmit",
@@ -16,7 +17,7 @@
     "preact": "^10"
   },
   "devDependencies": {
-    "@wular/pnext": "0.0.24",
+    "@wular/pnext": "0.2.0",
     "prettier": "^3.9.6"
   }
 }
