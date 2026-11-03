@@ -12,9 +12,9 @@ const CopyCode = dynamic(() => import('./copy-code').then(m => m.CopyCode), {
 // (reference/data/bench.json). Keep in sync when requoting a bench run.
 const BADGES = [
   ['0 KB', 'JavaScript shipped on server-rendered pages'],
-  ['~1 KB gzip', 'adds client-side navigation and prefetching'],
-  ['7.5 KB', 'whole framework, hydrating on Preact'],
-  ['12.5 KB', 'with full React compatibility included'],
+  ['~1.6 KB gzip', 'adds client-side navigation, its runtime loads on idle'],
+  ['8.5 KB', 'whole framework at first paint, hydrating on Preact'],
+  ['15 KB', 'with full React compatibility included'],
   ['10-12x', 'faster first page render than Next.js in dev'],
   ['3.5-4x', 'less memory used in dev than Next.js'],
   ['7-9x', 'faster production builds than Next.js'],

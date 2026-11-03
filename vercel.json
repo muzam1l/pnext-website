@@ -3,8 +3,7 @@
   "framework": null,
   "bunVersion": "1.4.x",
   "installCommand": "bun install",
-  "buildCommand": "bun run build",
-  "outputDirectory": ".pnext/public",
+  "buildCommand": "bun run build:vercel",
   "cleanUrls": true,
   "trailingSlash": false
 }
